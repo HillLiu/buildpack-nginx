@@ -2,7 +2,7 @@
 # bin/compile <build-dir> <cache-dir>
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-NGINX_VERSION="1.10.1"
+NGINX_VERSION="1.13.4"
 NGINX_TARBALL="nginx-${NGINX_VERSION}.tar.gz"
 PCRE_VERSION="8.40"
 PCRE_TARBALL="pcre-${PCRE_VERSION}.tar.gz"
@@ -20,6 +20,9 @@ suppress() {
 BUILD_DIR=$1
 CACHE_DIR=$2
 CUR_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
+
+echo $BUILD_DIR;
+echo $CACHE_DIR;
 
 mkdir -p "$BUILD_DIR" "$CACHE_DIR"
 
@@ -101,16 +104,12 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --without-http_map_module \
     --without-http_split_clients_module \
     --without-http_referer_module \
-    --without-http_proxy_module \
     --without-http_fastcgi_module \
     --without-http_uwsgi_module \
     --without-http_scgi_module \
     --without-http_memcached_module \
     --without-http_empty_gif_module \
     --without-http_browser_module \
-    --without-http_upstream_ip_hash_module \
-    --without-http_upstream_least_conn_module \
-    --without-http_upstream_keepalive_module \
     --without-mail_pop3_module \
     --without-mail_imap_module \
     --without-mail_smtp_module
