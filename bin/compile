@@ -65,7 +65,7 @@ if [[ ! -d "${PCRE_TARBALL%.tar.gz}" ]]; then
 fi
 
 if [[ ! -d "${ZLIB_TARBALL%.tar.gz}" ]]; then
-  echo "-----> Download and unzip zlib -- ${ZLIB_VERSION}"
+  echo "-----> Download and unzip zlib -- ${ZLIB_TARBALL}"
   curl -sSL "https://github.com/madler/zlib/archive/v${ZLIB_VERSION}.tar.gz" -o "${ZLIB_TARBALL}"
   tar xzf "${ZLIB_TARBALL}" && rm -rf "${ZLIB_TARBALL}"
 fi
