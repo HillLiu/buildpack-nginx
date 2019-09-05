@@ -46,7 +46,7 @@ if [[ ! -e "${BUILD_DIR}/www" ]]; then
   [[ -f "${BUILD_DIR}/www/mime.types" ]] && mv "${BUILD_DIR}/www/mime.types" "${BUILD_DIR}"
   [[ -f "${BUILD_DIR}/www/CHECKS" ]] && mv "${BUILD_DIR}/www/CHECKS" "${BUILD_DIR}"
   [[ -f "${BUILD_DIR}/www/app.json" ]] && mv "${BUILD_DIR}/www/app.json" "${BUILD_DIR}"
-  [[ -f "${BUILD_DIR}/www/tls" ]] && mv "${BUILD_DIR}/www/tls" "${BUILD_DIR}"
+  [[ -e "${BUILD_DIR}/www/tls" ]] && mv "${BUILD_DIR}/www/tls" "${BUILD_DIR}"
   rm -rf "${CACHE_DIR}/www"
 fi
 
