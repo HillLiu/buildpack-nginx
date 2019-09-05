@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 set -eo pipefail; [[ $TRACE ]] && set -x
+local APP_SSL_PATH="$DOKKU_ROOT/$APP/tls"
+
+echo ${APP_SSL_PATH} 
 
 NGINX_VERSION="1.16.1"
 NGINX_TARBALL="nginx-${NGINX_VERSION}.tar.gz"
