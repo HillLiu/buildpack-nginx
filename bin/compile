@@ -184,6 +184,7 @@ if [[ -f /app/nginx/app-nginx.conf.sigil ]]; then
 else
   erb /app/nginx/nginx.conf.erb > /app/nginx/nginx.conf
 fi
-exec /app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf
+echo '' > /tmp/access.log
+exec bash -c "/app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf && tail -f /tmp/access.log"
 EOF
 chmod +x "$BUILD_DIR/start_nginx"
