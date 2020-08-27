@@ -185,6 +185,6 @@ else
   erb /app/nginx/nginx.conf.erb > /app/nginx/nginx.conf
 fi
 echo '' > /tmp/access.log
-exec bash -c "/app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf && tail -f /tmp/access.log"
+exec bash -c "/app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf && while :; do tail /tmp/access.log && true > /tmp/access.log; sleep 1; done;"
 EOF
 chmod +x "$BUILD_DIR/start_nginx"
