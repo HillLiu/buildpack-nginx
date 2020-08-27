@@ -6,5 +6,5 @@ cat <<EOF
 ---
 addons: []
 default_process_types:
-  web: /app/start_nginx
+  web: gpasswd -a nobody tty && su -c /app/start_nginx nobody
 EOF
