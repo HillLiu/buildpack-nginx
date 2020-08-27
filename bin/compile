@@ -185,6 +185,6 @@ if [[ -f /app/nginx/app-nginx.conf.sigil ]]; then
 else
   erb /app/nginx/nginx.conf.erb > /app/nginx/nginx.conf
 fi
-exec bash -c "su-exec nobody /app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf -g 'daemon off;'"
+exec bash -c "su -c /app/nginx/nginx nobody -p /app/nginx -c /app/nginx/nginx.conf -g 'daemon off;'"
 EOF
 chmod +x "$BUILD_DIR/start_nginx"
