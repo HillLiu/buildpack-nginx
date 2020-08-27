@@ -178,13 +178,13 @@ fi
 # build a startup script
 cat <<EOF >"$BUILD_DIR/start_nginx"
 #!/usr/bin/env bash
+gpasswd -a nobody tty
 rm -f /app/nginx/nginx.conf
 if [[ -f /app/nginx/app-nginx.conf.sigil ]]; then
   /app/sigil/sigil -f /app/nginx/app-nginx.conf.sigil NGINX_ROOT="\$NGINX_ROOT" PORT="\$PORT" | cat -s > /app/nginx/nginx.conf
 else
   erb /app/nginx/nginx.conf.erb > /app/nginx/nginx.conf
 fi
-echo '' > /tmp/access.log
-exec bash -c "/app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf && tail -f /tmp/access.log"
+exec bash -c "su-exec nobody /app/nginx/nginx -p /app/nginx -c /app/nginx/nginx.conf -g 'daemon off;'"
 EOF
 chmod +x "$BUILD_DIR/start_nginx"
