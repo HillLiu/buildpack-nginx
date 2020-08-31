@@ -180,7 +180,11 @@ cat <<EOF >"$BUILD_DIR/start_nginx"
 #!/usr/bin/env bash
 rm -f /app/nginx/nginx.conf
 if [[ -f /app/nginx/app-nginx.conf.sigil ]]; then
-  /app/sigil/sigil -f /app/nginx/app-nginx.conf.sigil NGINX_ROOT="\$NGINX_ROOT" PORT="\$PORT" UPSTREAM="\$UPSTREAM" | cat -s > /app/nginx/nginx.conf
+  /app/sigil/sigil -f /app/nginx/app-nginx.conf.sigil \
+  NGINX_ROOT="\$NGINX_ROOT" \
+  PORT="\$PORT" \
+  UPSTREAM_OPTIONS="\$UPSTREAM_OPTIONS" \
+  UPSTREAM="\$UPSTREAM" | cat -s > /app/nginx/nginx.conf
 else
   erb /app/nginx/nginx.conf.erb > /app/nginx/nginx.conf
 fi
